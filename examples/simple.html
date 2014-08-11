@@ -33,6 +33,8 @@
     <script>
       var Sidebar = require('sidebar');
       var sidebar = new Sidebar(document.querySelector('#left'), 'left');
+      sidebar.hang(10);
+      sidebar.close();
       var button = document.querySelector('button');
       button.onclick = sidebar.toggle.bind(sidebar);
     </script>

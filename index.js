@@ -30,6 +30,13 @@ function Sidebar(el, location){
   this.map = map[this.location];
   this.rect = el.getBoundingClientRect();
   this.el = el;
+  this._hang = 0;
+}
+
+Sidebar.prototype.hang = function(px){
+  if (arguments.length == 0) return this._hang;
+  this._hang = px;
+  return this;
 }
 
 /**
@@ -92,7 +99,7 @@ Sidebar.prototype.close = function(){
     , el = this.el;
 
   parent.style[map[0]] = 0 + 'px';
-  el.style[map[0]] = '-' + rect[map[1]] + 'px';
+  el.style[map[0]] = '-' + ( rect[map[1]] - this._hang ) + 'px';
   this.state('closed');
   return this;
 };
